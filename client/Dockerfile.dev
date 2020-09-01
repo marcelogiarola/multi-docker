@@ -1,0 +1,19 @@
+# Base image
+FROM alpine
+
+# Install node and npm
+RUN apk add --update nodejs
+RUN apk add --update npm
+
+# Setup working dir
+WORKDIR '/app'
+
+# Install app dependencies
+COPY ./package.json ./
+RUN npm install
+
+# Copy app source code
+COPY ./ ./
+
+# Setup default initial command
+CMD [ "npm", "run", "start" ]
