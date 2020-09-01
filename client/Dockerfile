@@ -25,7 +25,7 @@ FROM nginx
 EXPOSE 3000
 
 # Nginx configuration
-COPY ./client/default.conf /etc/nginx/conf.d/default.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 # Coping build results
 COPY --from=builder /app/build /usr/share/nginx/html
