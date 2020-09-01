@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t marcelogiarola/complex-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true marcelogiarola/complex-test npm test
+
+after_success:
+  - docker build -t marcelogiarola/multi-client ./client
+  - docker build -t marcelogiarola/multi-nginx ./nginx
+  - docker build -t marcelogiarola/multi-server ./server
+  - docker build -t marcelogiarola/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take the images and push to docker hub
+  - docker push marcelogiarola/multi-client
+  - docker push marcelogiarola/multi-nginx
+  - docker push marcelogiarola/multi-server
+  - docker push marcelogiarola/multi-worker
