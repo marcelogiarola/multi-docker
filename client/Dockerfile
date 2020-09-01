@@ -1,5 +1,5 @@
 # Builder base image
-FROM alpine AS marcelogiarola\complex-client_builder
+FROM alpine AS marcelogiarola/complex-client_builder
 
 # Install node.js and npm
 RUN apk add --update nodejs
