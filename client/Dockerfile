@@ -1,5 +1,5 @@
 # Builder base image
-FROM alpine AS marcelogiarola/complex-client_builder
+FROM alpine AS builder
 
 # Install node.js and npm
 RUN apk add --update nodejs
@@ -28,4 +28,4 @@ EXPOSE 3000
 COPY ./client/default.conf /etc/nginx/conf.d/default.conf
 
 # Coping build results
-COPY --from=marcelogiarola\complex-client_builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html
