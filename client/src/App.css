@@ -24,7 +24,18 @@
   color: white;
 }
 
+.App-header .App-menu {
+  background-color: antiquewhite;
+  width: 25%;
+  display: flex;
+  align-content: flex-end;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
 .App-link {
+  display: inline;
+  background-color: antiquewhite;
   color: #61dafb;
 }
 
